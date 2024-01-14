@@ -9,7 +9,16 @@ class HomeScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        title: const Text(
+          'Result Match',
+          style: TextStyle(
+            fontWeight:  FontWeight.w600,
+            height: 15,
+          ),
+        ),
+      ),
       body: _buildBody(),
     );
   }
@@ -34,37 +43,62 @@ class HomeScreen extends GetView<HomeController> {
   Widget _item(FixtureItemModel item) {
     return Container(
       margin: const EdgeInsets.symmetric(
-        vertical: 5,
+        vertical: 4,
         horizontal: 16,
       ),
       padding: const EdgeInsets.all(10),
-      height: 150,
+      height: 180,
       width: Get.width,
-      color: Colors.blue,
+      color: Colors.blue.shade400,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+
           Column(
             children: [
               Image.network(
                 item.teams.home.logo,
-                height: 100,
+                height: 94,
                 width: 100,
               ),
               const SizedBox(height: 10),
-              Text(item.teams.home.name),
+              Text(
+                  item.teams.home.name,
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                  item.goals?.home.toString() ?? 'n/a',
+                style: const TextStyle(
+                  height: 2,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              //Text(item.fixture?.home.referee)
             ],
           ),
+
           Column(
             children: [
               Image.network(
                 item.teams.away.logo,
-                height: 100,
+                height: 94,
                 width: 100,
               ),
               const SizedBox(height: 10),
-              Text(item.teams.away.name),
+              Text(
+                  item.teams.away.name,
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                  item.goals?.away.toString() ?? 'n/a',
+                style: const TextStyle(
+                  height: 2,
+                  fontWeight: FontWeight.w700,
+                ),
+              )
             ],
           ),
         ],
